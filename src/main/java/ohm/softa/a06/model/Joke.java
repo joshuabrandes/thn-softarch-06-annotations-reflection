@@ -1,21 +1,24 @@
 package ohm.softa.a06.model;
 
+import com.google.gson.annotations.SerializedName;
+import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author Peter Kurfer
  * Created on 11/9/17.
  */
+@Setter
 public final class Joke {
 
+	@SerializedName("id")
 	private String identifier;
+	@SerializedName("value")
 	private String content;
-	private List<String> rubrics;
+
+	// private List<String> rubrics;
 
 
 	public String getIdentifier() {
@@ -37,7 +40,7 @@ public final class Joke {
 		return new EqualsBuilder()
 			.append(getIdentifier(), joke1.getIdentifier())
 			.append(getContent(), joke1.getContent())
-			.append(rubrics, joke1.rubrics)
+			// .append(rubrics, joke1.rubrics)
 			.isEquals();
 	}
 
@@ -46,7 +49,7 @@ public final class Joke {
 		return new HashCodeBuilder(17, 37)
 			.append(getIdentifier())
 			.append(getContent())
-			.append(rubrics)
+			// .append(rubrics)
 			.toHashCode();
 	}
 
@@ -55,7 +58,7 @@ public final class Joke {
 		return new ToStringBuilder(this)
 			.append("identifier", identifier)
 			.append("content", content)
-			.append("rubrics", rubrics)
+			// .append("rubrics", rubrics)
 			.toString();
 	}
 }

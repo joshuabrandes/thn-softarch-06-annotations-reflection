@@ -1,9 +1,13 @@
 package ohm.softa.a06.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import ohm.softa.a06.CNJDBApi;
 import ohm.softa.a06.model.Joke;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import retrofit2.Retrofit;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -28,11 +32,16 @@ class CNJDBTests {
 
 		while (requests++ < REQUEST_COUNT) {
 			// TODO Prepare call object
+			var retrofit = new Retrofit.Builder()
+				.baseUrl("https://api.chucknorris.io/jokes/")
+				.build();
 
 			// TODO Perform a synchronous request
+			var result = retrofit.create(CNJDBApi.class)
+				.getRandomJoke()
+				.execute();
 
 			// TODO Extract object
-
 			Joke j = null;
 
 			if (jokeNumbers.contains(j.getIdentifier())) {
